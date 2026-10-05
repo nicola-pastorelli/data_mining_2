@@ -32,7 +32,7 @@ The project analyses the Spotify tracks dataset, covering data preparation, time
 - **Imbalanced learning:** century classification (91% / 9%) with a Decision Tree, using SMOTE, ADASYN and Random Undersampling.
 
 ### 4. Advanced ML & XAI
-- **Classification (20 genres):** Logistic Regression, SVC, Random Forest, Bagging (KNN), XGBoost and a PyTorch Neural Network, all tuned with grid search and 5-fold CV.
+- **Classification (20 genres):** Logistic Regression, SVC, Random Forest, Bagging (KNN) and XGBoost, tuned with grid search and 5-fold CV, plus a manually tuned PyTorch Neural Network.
 - **Regression (track popularity):** Support Vector Regressor and Gradient Boosting Regressor.
 - **Explainability:** LIME applied to the SVC to understand why the `folk` genre is hard to classify.
 
@@ -40,12 +40,12 @@ The project analyses the Spotify tracks dataset, covering data preparation, time
 
 ## Key results
 
-| Task                              | Best model                         | Result            |
-|-----------------------------------|------------------------------------|-------------------|
-| Time series genre classification  | KNN (Euclidean, DFT)               | Accuracy 0.23     |
-| Tabular genre classification      | Neural Network + extra features    | Accuracy 0.63     |
-| Imbalanced century classification | Decision Tree + SMOTE              | Minority recall 0.62 (up from 0.44) |
-| Popularity regression             | Gradient Boosting Regressor        | R² 0.482          |
+| Task                              | Best model                      | Result                              |
+|-----------------------------------|---------------------------------|-------------------------------------|
+| Time series genre classification  | KNN (Euclidean, DFT)            | Accuracy 0.23                       |
+| Tabular genre classification      | Neural Network + extra features | Accuracy 0.63                       |
+| Imbalanced century classification | Decision Tree + SMOTE           | Minority recall 0.62 (up from 0.44) |
+| Popularity regression             | Gradient Boosting Regressor     | R² 0.482                            |
 
 ---
 
@@ -53,7 +53,7 @@ The project analyses the Spotify tracks dataset, covering data preparation, time
 
 - Time series genre classification is hard (accuracy ≤ 0.23, random baseline 0.05). Euclidean distance slightly outperformed DTW, probably because the series are already well aligned.
 - Shapelets appear closer to motifs than to discords, suggesting that genres are better described by recurring patterns than by anomalies.
-- Outliers are consistent across methods from different families. The `sleep` genre contains the most.
+- Outliers are consistent across methods from different families. Among the outliers shared by all three methods, `sleep` is the most frequent genre.
 - Oversampling improves minority-class recall at the cost of overall accuracy.
 - Advanced models beat simple ones, and the engineered features improved the neural network.
 - `folk` and `mpb` are the hardest genres to classify.
